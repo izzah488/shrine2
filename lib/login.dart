@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'color.dart'; // Ensure this is defined in your project
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -22,12 +23,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // TODO: Add text editing controllers (101)
-  final _usernameCntroller = TextEditingController();
+  // Text editing controllers
+  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,54 +39,64 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 Image.asset('assets/diamond.png'),
                 const SizedBox(height: 16.0),
-                const Text('SHRINE'),
+                Text(
+                  'SHRINE',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
               ],
             ),
             const SizedBox(height: 120.0),
-            // TODO: Remove filled: true values (103)
+            // Username TextField
             TextField(
-
-               controller: _usernameCntroller,
-            
-             
+              controller: _usernameController,
               decoration: const InputDecoration(
-                filled: true,
                 labelText: 'Username',
               ),
             ),
-
-            const SizedBox(height:120.0),
-
+            const SizedBox(height: 12.0),
+            // Password TextField
             TextField(
               controller: _passwordController,
-              decoration:const InputDecoration(
-            filled: true,
-            labelText: 'Password',  
-              ),obscureText:true,),
-            // TODO: Add TextField widgets (101)
-           
-            // TODO: Add button bar (101)
-
+              decoration: const InputDecoration(
+                labelText: 'Password',
+              ),
+              obscureText: true,
+            ),
+            const SizedBox(height: 12.0),
+            // Button Bar
             OverflowBar(
               alignment: MainAxisAlignment.end,
-              children:<Widget>[
+              children: <Widget>[
                 TextButton(
-                  
-                  child: const Text('CANCEL') ,
-                  onPressed: (){
-                    _usernameCntroller.clear();
+                  child: const Text('CANCEL'),
+                  onPressed: () {
+                    _usernameController.clear();
                     _passwordController.clear();
-                    //to do clear the text fields
-                  },),
-                  //todo elevation to next
-                  //todo beveled rectangular border to next 
-                  ElevatedButton(
-                    child: const Text('NEXT'),
-                    onPressed:(){
-                      Navigator.pop(context);
-                     //todo show next page 
-                    },),
-              ])
+                  },
+                  style: TextButton.styleFrom(
+                    foregroundColor: kShrineBrown900,
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  child: const Text('NEXT'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    // TODO: Show next page 
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: kShrineBrown900,
+                    backgroundColor: kShrinePink100,
+                    elevation: 8.0,
+                    shape: const BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(7.0)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
